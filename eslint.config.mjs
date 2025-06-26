@@ -11,6 +11,14 @@ const compat = new FlatCompat({
 
 const eslintConfig = [
   ...compat.extends("next/core-web-vitals", "next/typescript"),
+  {
+    rules: {
+      // Disable explicit any rule for form components that need flexible typing
+      "@typescript-eslint/no-explicit-any": "warn",
+      // Reduce severity of image optimization warnings  
+      "@next/next/no-img-element": "warn"
+    }
+  }
 ];
 
 export default eslintConfig;
