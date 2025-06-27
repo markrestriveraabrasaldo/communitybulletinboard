@@ -1,14 +1,15 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useActionState } from 'react'
+import { useFormStatus } from 'react-dom'
 import { useAuth } from '@/contexts/AuthContext'
-import { createClient } from '@/lib/supabase-client'
-import { Category, PostInsert, PostWithCategory, PostUpdate } from '@/types/database'
-import { getCategoryFields, validateCategoryFields, FormField } from '@/config/categoryFields'
+import { Category, PostWithCategory } from '@/types/database'
+import { getCategoryFields, FormField } from '@/config/categoryFields'
 import { flattenFormDataToDetails, getInitialFormState } from '@/utils/formHelpers'
+import { createPost, updatePost, uploadImage } from '@/lib/actions/posts'
 import { toast } from 'sonner'
 import PriceInput from './PriceInput'
-import { PriceData, DEFAULT_PRICE_DATA, validatePriceData } from '@/types/pricing'
+import { PriceData, DEFAULT_PRICE_DATA } from '@/types/pricing'
 
 interface PostFormProps {
   categories: Category[]
@@ -18,6 +19,68 @@ interface PostFormProps {
   editingPost?: PostWithCategory
 }
 
+function SubmitButton({ isEditing }: { isEditing: boolean }) {
+  const { pending } = useFormStatus()
+  
+  return (
+    <button
+      type="submit"
+      disabled={pending}
+      className="w-full px-6 py-4 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors shadow-sm"
+    >
+      {pending ? (
+        <div className="flex items-center justify-center">
+          <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+          {isEditing ? 'Updating Post...' : 'Creating Post...'}
+        </div>
+      ) : (isEditing ? 'Update Post' : 'Create Post')}
+    </button>
+  )
+}
+
+async function handleFormAction(_prevState: any, formData: FormData) {
+  try {
+    // Handle image uploads first if there are any files
+    const imageFiles = formData.getAll('imageFiles') as File[]
+    const imageUrls: string[] = []
+    
+    if (imageFiles.length > 0) {
+      for (const file of imageFiles) {
+        if (file.size > 0) { // Check if file is actually selected
+          const imageFormData = new FormData()
+          imageFormData.append('image', file)
+          const result = await uploadImage(imageFormData)
+          if (result.success && result.imageUrl) {
+            imageUrls.push(result.imageUrl)
+          }
+        }
+      }
+    }
+
+    // Set the main image URL from uploads
+    if (imageUrls.length > 0) {
+      formData.set('imageUrl', imageUrls[0])
+    }
+
+    // Determine if this is an update or create operation
+    const postId = formData.get('postId') as string
+    
+    if (postId) {
+      // Update existing post
+      return await updatePost(formData)
+    } else {
+      // Create new post
+      return await createPost(formData)
+    }
+  } catch (error) {
+    console.error('Form action error:', error)
+    return { success: false, error: 'An unexpected error occurred' }
+  }
+}
+
 export default function PostForm({ categories, onPostCreated, selectedCategoryId, isModal = false, editingPost }: PostFormProps) {
   const { user } = useAuth()
   const [categoryId, setCategoryId] = useState(selectedCategoryId || editingPost?.category_id || '')
@@ -25,10 +88,31 @@ export default function PostForm({ categories, onPostCreated, selectedCategoryId
   const [pricingData, setPricingData] = useState<PriceData>(DEFAULT_PRICE_DATA)
   const [imageFiles, setImageFiles] = useState<Record<string, File[]>>({})
   const [imagePreviews, setImagePreviews] = useState<Record<string, string[]>>({})
-  const [isSubmitting, setIsSubmitting] = useState(false)
-
-  const supabase = createClient()
+  
   const isEditing = !!editingPost
+  const [state, formAction] = useActionState(handleFormAction, { success: false, error: undefined })
+
+  // Handle form submission results
+  useEffect(() => {
+    if (state.success) {
+      toast.success(isEditing ? 'Post updated successfully!' : 'Post created successfully!')
+      if (onPostCreated) {
+        onPostCreated()
+      }
+      
+      // Reset form for new posts
+      if (!isEditing) {
+        const initialState = getInitialFormState(fields)
+        setFormData(initialState)
+        setPricingData(DEFAULT_PRICE_DATA)
+        setCategoryId(selectedCategoryId || '')
+        setImageFiles({})
+        setImagePreviews({})
+      }
+    } else if (state.error) {
+      toast.error(state.error)
+    }
+  }, [state, isEditing, onPostCreated, selectedCategoryId])
 
   // Get current category details and fields
   const currentCategory = categories.find(cat => cat.id === categoryId)
@@ -204,153 +288,6 @@ export default function PostForm({ categories, onPostCreated, selectedCategoryId
     }))
   }
 
-  const uploadImage = async (file: File): Promise<string | null> => {
-    const fileExt = file.name.split('.').pop()
-    const fileName = `${user.id}/${Date.now()}.${fileExt}`
-
-    const { error: uploadError } = await supabase.storage
-      .from('post-images')
-      .upload(fileName, file)
-
-    if (uploadError) {
-      console.error('Error uploading image:', uploadError)
-      return null
-    }
-
-    const { data } = supabase.storage
-      .from('post-images')
-      .getPublicUrl(fileName)
-
-    return data.publicUrl
-  }
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    
-    if (!categoryId) {
-      toast.error('Please select a category')
-      return
-    }
-
-    // Validate form fields
-    const validationErrors = validateCategoryFields(categoryName, formData)
-    if (validationErrors.length > 0) {
-      toast.error(validationErrors[0])
-      return
-    }
-
-    // Validate pricing data if category uses pricing
-    if (categoryUsesPricing(categoryName)) {
-      const pricingValidation = validatePriceData(pricingData)
-      if (!pricingValidation.isValid) {
-        toast.error(pricingValidation.errors[0])
-        return
-      }
-    }
-
-    setIsSubmitting(true)
-
-    try {
-      // Upload any new images
-      const uploadedUrls: Record<string, string[]> = {}
-      for (const [fieldId, files] of Object.entries(imageFiles)) {
-        if (files && files.length > 0) {
-          const urls: string[] = []
-          for (const file of files) {
-            const imageUrl = await uploadImage(file)
-            if (!imageUrl) {
-              throw new Error(`Failed to upload ${fieldId} image`)
-            }
-            urls.push(imageUrl)
-          }
-          uploadedUrls[fieldId] = urls
-        }
-      }
-
-      // Merge existing images with new uploaded URLs
-      const finalFormData = { ...formData }
-      for (const [fieldId, newUrls] of Object.entries(uploadedUrls)) {
-        const existingUrls = imagePreviews[fieldId] || []
-        const existingImages = existingUrls.filter(url => url.startsWith('http'))
-        finalFormData[fieldId] = [...existingImages, ...newUrls]
-      }
-
-      // Create details object from form data
-      const details = flattenFormDataToDetails(fields, finalFormData)
-      
-      // Add pricing data if category uses pricing
-      if (categoryUsesPricing(categoryName)) {
-        details.pricing = pricingData
-      }
-
-      // For backward compatibility, extract title and description
-      const title = finalFormData.title || ''
-      const description = finalFormData.description || ''
-      const legacyImageUrl = Array.isArray(finalFormData.image) ? finalFormData.image[0] : finalFormData.image || null
-
-      if (isEditing && editingPost) {
-        // Update existing post
-        const updateData: PostUpdate = {
-          title,
-          description,
-          details,
-          category_id: categoryId,
-          image_url: legacyImageUrl
-        }
-
-        const { error: updateError } = await supabase
-          .from('posts')
-          .update(updateData)
-          .eq('id', editingPost.id)
-
-        if (updateError) {
-          throw updateError
-        }
-
-        toast.success('Post updated successfully!')
-      } else {
-        // Create new post
-        const postData: PostInsert = {
-          title,
-          description,
-          details,
-          category_id: categoryId,
-          user_id: user.id,
-          user_name: user.user_metadata?.full_name || user.email || 'Anonymous',
-          user_avatar_url: user.user_metadata?.avatar_url,
-          image_url: legacyImageUrl,
-          status: 'active'
-        }
-
-        const { error: insertError } = await supabase
-          .from('posts')
-          .insert([postData])
-
-        if (insertError) {
-          throw insertError
-        }
-
-        // Reset form only for new posts
-        const initialState = getInitialFormState(fields)
-        setFormData(initialState)
-        setPricingData(DEFAULT_PRICE_DATA)
-        setCategoryId(selectedCategoryId || '')
-        setImageFiles({})
-        setImagePreviews({})
-        
-        toast.success(`Post created successfully in ${categoryName}!`)
-      }
-      
-      if (onPostCreated) {
-        onPostCreated()
-      }
-    } catch (err) {
-      console.error(`Error ${isEditing ? 'updating' : 'creating'} post:`, err)
-      toast.error(err instanceof Error ? err.message : `Failed to ${isEditing ? 'update' : 'create'} post`)
-    } finally {
-      setIsSubmitting(false)
-    }
-  }
 
   const renderField = (field: FormField) => {
     const value = formData[field.id] || ''
@@ -441,6 +378,7 @@ export default function PostForm({ categories, onPostCreated, selectedCategoryId
               <input
                 type="file"
                 id={field.id}
+                name="imageFiles"
                 accept={field.accept}
                 multiple
                 onChange={(e) => handleImageChange(field.id, e)}
@@ -501,7 +439,14 @@ export default function PostForm({ categories, onPostCreated, selectedCategoryId
         </h3>
       )}
 
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form action={formAction} className="space-y-4">
+        {/* Hidden inputs for Server Action */}
+        {isEditing && editingPost && <input type="hidden" name="postId" value={editingPost.id} />}
+        <input type="hidden" name="categoryId" value={categoryId} />
+        <input type="hidden" name="details" value={JSON.stringify({
+          ...flattenFormDataToDetails(fields, formData),
+          ...(categoryUsesPricing(categoryName) ? { pricing: pricingData } : {})
+        })} />
         <div>
           <label htmlFor="category" className="block text-sm font-semibold text-gray-800 mb-2">
             Category
@@ -548,21 +493,7 @@ export default function PostForm({ categories, onPostCreated, selectedCategoryId
           </div>
         )}
 
-        <button
-          type="submit"
-          disabled={isSubmitting}
-          className="w-full px-6 py-4 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors shadow-sm"
-        >
-          {isSubmitting ? (
-            <div className="flex items-center justify-center">
-              <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-              </svg>
-              {isEditing ? 'Updating Post...' : 'Creating Post...'}
-            </div>
-          ) : (isEditing ? 'Update Post' : 'Create Post')}
-        </button>
+        <SubmitButton isEditing={isEditing} />
       </form>
     </div>
   )

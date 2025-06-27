@@ -195,3 +195,37 @@ The search functionality makes the community bulletin board a true discovery pla
 - **Hidden When Empty**: No search bar shown when category has no posts
 
 The refined search experience provides intuitive, context-aware search capabilities that adapt to user context while maintaining clean, uncluttered interfaces throughout the application.
+
+## 🧹 Remove Obsolete handleSubmit Function from PostForm
+
+### Problem
+The PostForm component contains an obsolete `handleSubmit` function that has been replaced with Server Actions. This legacy code needs to be removed to clean up the codebase and eliminate potential confusion.
+
+### Plan
+
+#### Tasks
+1. **Remove handleSubmit function** (lines 311-437)
+   - Large async function that handles form submission manually
+   - Contains calls to `setIsSubmitting(true)` and `setIsSubmitting(false)`
+   - Uses supabase directly for database operations
+   - Has been replaced by Server Actions (`handleFormAction`)
+
+2. **Remove uploadImage function** (lines 291-309) 
+   - Function only used by the handleSubmit function
+   - Server Actions now handle image uploads
+   - Contains supabase storage operations that are duplicated elsewhere
+
+3. **Clean up any remaining references**
+   - Verify no other code references the removed functions
+   - Check that all imports are still needed after removal
+
+#### Expected Outcome
+- PostForm component will be cleaner and use only Server Actions
+- No more direct supabase calls in the component
+- No more manual submission state management
+- Reduced code complexity and better separation of concerns
+
+#### Notes
+- The component already uses `useFormState` and `handleFormAction` for Server Actions
+- Image handling functions like `handleImageChange`, `removeImage` are preserved
+- All form rendering and state management functions are preserved

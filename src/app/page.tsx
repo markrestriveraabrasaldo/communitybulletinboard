@@ -1,6 +1,7 @@
 import { createClient } from '@/lib/supabase-server'
 import LoginButton from '@/components/LoginButton'
 import HomePage from '@/components/HomePage'
+import AuthMessage from '@/components/AuthMessage'
 
 interface CategoryWithCount {
   id: string;
@@ -95,6 +96,7 @@ export default async function Home() {
         </div>
       </header>
 
+      <AuthMessage />
       <HomePage categories={categoriesWithCounts} />
     </div>
   )
