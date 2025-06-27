@@ -11,7 +11,7 @@
     "grepInvert": null,
     "maxFailures": 0,
     "metadata": {
-      "actualWorkers": 6
+      "actualWorkers": 1
     },
     "preserveOutput": "always",
     "reporter": [
@@ -43,7 +43,7 @@
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
-          "actualWorkers": 6
+          "actualWorkers": 1
         },
         "id": "chromium",
         "name": "chromium",
@@ -59,7 +59,7 @@
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
-          "actualWorkers": 6
+          "actualWorkers": 1
         },
         "id": "firefox",
         "name": "firefox",
@@ -75,7 +75,7 @@
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
-          "actualWorkers": 6
+          "actualWorkers": 1
         },
         "id": "webkit",
         "name": "webkit",
@@ -91,7 +91,7 @@
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
-          "actualWorkers": 6
+          "actualWorkers": 1
         },
         "id": "Mobile Chrome",
         "name": "Mobile Chrome",
@@ -107,7 +107,7 @@
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
-          "actualWorkers": 6
+          "actualWorkers": 1
         },
         "id": "Mobile Safari",
         "name": "Mobile Safari",
@@ -133,494 +133,20 @@
   },
   "suites": [
     {
-      "title": "e2e/pricing.spec.ts",
-      "file": "e2e/pricing.spec.ts",
+      "title": "e2e/navigation.spec.ts",
+      "file": "e2e/navigation.spec.ts",
       "column": 0,
       "line": 0,
       "specs": [],
       "suites": [
         {
-          "title": "Pricing System",
-          "file": "e2e/pricing.spec.ts",
-          "line": 10,
+          "title": "Navigation",
+          "file": "e2e/navigation.spec.ts",
+          "line": 9,
           "column": 6,
           "specs": [
             {
-              "title": "price input component renders correctly",
-              "ok": false,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "firefox",
-                  "projectName": "firefox",
-                  "results": [
-                    {
-                      "workerIndex": 9,
-                      "parallelIndex": 0,
-                      "status": "failed",
-                      "duration": 8029,
-                      "error": {
-                        "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('text=Price Type')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=Price Type')\u001b[22m\n",
-                        "stack": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('text=Price Type')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=Price Type')\u001b[22m\n\n    at /Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/e2e/pricing.spec.ts:31:51",
-                        "location": {
-                          "file": "/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/e2e/pricing.spec.ts",
-                          "column": 51,
-                          "line": 31
-                        },
-                        "snippet": "\u001b[0m \u001b[90m 29 |\u001b[39m     \n \u001b[90m 30 |\u001b[39m     \u001b[90m// Should see pricing section\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 31 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'text=Price Type'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                   \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 32 |\u001b[39m     \n \u001b[90m 33 |\u001b[39m     \u001b[90m// Should see radio buttons for price types\u001b[39m\n \u001b[90m 34 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'text=Fixed Price'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/e2e/pricing.spec.ts",
-                            "column": 51,
-                            "line": 31
-                          },
-                          "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('text=Price Type')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=Price Type')\u001b[22m\n\n\n\u001b[0m \u001b[90m 29 |\u001b[39m     \n \u001b[90m 30 |\u001b[39m     \u001b[90m// Should see pricing section\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 31 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'text=Price Type'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                   \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 32 |\u001b[39m     \n \u001b[90m 33 |\u001b[39m     \u001b[90m// Should see radio buttons for price types\u001b[39m\n \u001b[90m 34 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'text=Fixed Price'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at /Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/e2e/pricing.spec.ts:31:51\u001b[22m"
-                        }
-                      ],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-06-26T16:53:17.282Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/test-results/e2e-pricing-Pricing-System-b722d-component-renders-correctly-firefox/test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/test-results/e2e-pricing-Pricing-System-b722d-component-renders-correctly-firefox/video.webm"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/test-results/e2e-pricing-Pricing-System-b722d-component-renders-correctly-firefox/error-context.md"
-                        },
-                        {
-                          "name": "trace",
-                          "contentType": "application/zip",
-                          "path": "/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/test-results/e2e-pricing-Pricing-System-b722d-component-renders-correctly-firefox/trace.zip"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/e2e/pricing.spec.ts",
-                        "column": 51,
-                        "line": 31
-                      }
-                    }
-                  ],
-                  "status": "unexpected"
-                }
-              ],
-              "id": "20c727f054eaae62e81d-8226ff2cda9ad718288d",
-              "file": "e2e/pricing.spec.ts",
-              "line": 19,
-              "column": 7
-            },
-            {
-              "title": "fixed price input works correctly",
-              "ok": false,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "firefox",
-                  "projectName": "firefox",
-                  "results": [
-                    {
-                      "workerIndex": 10,
-                      "parallelIndex": 1,
-                      "status": "failed",
-                      "duration": 7727,
-                      "error": {
-                        "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('input[placeholder*=\"Homemade Lasagna\"]')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('input[placeholder*=\"Homemade Lasagna\"]')\u001b[22m\n",
-                        "stack": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('input[placeholder*=\"Homemade Lasagna\"]')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('input[placeholder*=\"Homemade Lasagna\"]')\u001b[22m\n\n    at TestHelpers.isElementReady (/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/utils/test-helpers.ts:58:27)\n    at TestHelpers.fillFormField (/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/utils/test-helpers.ts:67:30)\n    at /Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/e2e/pricing.spec.ts:49:19",
-                        "location": {
-                          "file": "/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/utils/test-helpers.ts",
-                          "column": 27,
-                          "line": 58
-                        },
-                        "snippet": "\u001b[90m   at \u001b[39mutils/test-helpers.ts:58\n\n\u001b[0m \u001b[90m 56 |\u001b[39m   \u001b[36masync\u001b[39m isElementReady(selector\u001b[33m:\u001b[39m string) {\n \u001b[90m 57 |\u001b[39m     \u001b[36mconst\u001b[39m element \u001b[33m=\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mlocator(selector)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 58 |\u001b[39m     \u001b[36mawait\u001b[39m expect(element)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 59 |\u001b[39m     \u001b[36mawait\u001b[39m expect(element)\u001b[33m.\u001b[39mtoBeEnabled()\u001b[33m;\u001b[39m\n \u001b[90m 60 |\u001b[39m     \u001b[36mreturn\u001b[39m element\u001b[33m;\u001b[39m\n \u001b[90m 61 |\u001b[39m   }\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/utils/test-helpers.ts",
-                            "column": 27,
-                            "line": 58
-                          },
-                          "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('input[placeholder*=\"Homemade Lasagna\"]')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('input[placeholder*=\"Homemade Lasagna\"]')\u001b[22m\n\n\n\u001b[90m   at \u001b[39mutils/test-helpers.ts:58\n\n\u001b[0m \u001b[90m 56 |\u001b[39m   \u001b[36masync\u001b[39m isElementReady(selector\u001b[33m:\u001b[39m string) {\n \u001b[90m 57 |\u001b[39m     \u001b[36mconst\u001b[39m element \u001b[33m=\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mlocator(selector)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 58 |\u001b[39m     \u001b[36mawait\u001b[39m expect(element)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 59 |\u001b[39m     \u001b[36mawait\u001b[39m expect(element)\u001b[33m.\u001b[39mtoBeEnabled()\u001b[33m;\u001b[39m\n \u001b[90m 60 |\u001b[39m     \u001b[36mreturn\u001b[39m element\u001b[33m;\u001b[39m\n \u001b[90m 61 |\u001b[39m   }\u001b[0m\n\u001b[2m    at TestHelpers.isElementReady (/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/utils/test-helpers.ts:58:27)\u001b[22m\n\u001b[2m    at TestHelpers.fillFormField (/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/utils/test-helpers.ts:67:30)\u001b[22m\n\u001b[2m    at /Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/e2e/pricing.spec.ts:49:19\u001b[22m"
-                        }
-                      ],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-06-26T16:53:17.297Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/test-results/e2e-pricing-Pricing-System-fixed-price-input-works-correctly-firefox/test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/test-results/e2e-pricing-Pricing-System-fixed-price-input-works-correctly-firefox/video.webm"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/test-results/e2e-pricing-Pricing-System-fixed-price-input-works-correctly-firefox/error-context.md"
-                        },
-                        {
-                          "name": "trace",
-                          "contentType": "application/zip",
-                          "path": "/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/test-results/e2e-pricing-Pricing-System-fixed-price-input-works-correctly-firefox/trace.zip"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/utils/test-helpers.ts",
-                        "column": 27,
-                        "line": 58
-                      }
-                    }
-                  ],
-                  "status": "unexpected"
-                }
-              ],
-              "id": "20c727f054eaae62e81d-3816af1ad8ede94d3b41",
-              "file": "e2e/pricing.spec.ts",
-              "line": 39,
-              "column": 7
-            },
-            {
-              "title": "price range input works correctly",
-              "ok": false,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "firefox",
-                  "projectName": "firefox",
-                  "results": [
-                    {
-                      "workerIndex": 11,
-                      "parallelIndex": 2,
-                      "status": "failed",
-                      "duration": 7958,
-                      "error": {
-                        "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('input[placeholder*=\"Plumbing Repair\"]')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('input[placeholder*=\"Plumbing Repair\"]')\u001b[22m\n",
-                        "stack": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('input[placeholder*=\"Plumbing Repair\"]')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('input[placeholder*=\"Plumbing Repair\"]')\u001b[22m\n\n    at TestHelpers.isElementReady (/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/utils/test-helpers.ts:58:27)\n    at TestHelpers.fillFormField (/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/utils/test-helpers.ts:67:30)\n    at /Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/e2e/pricing.spec.ts:75:19",
-                        "location": {
-                          "file": "/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/utils/test-helpers.ts",
-                          "column": 27,
-                          "line": 58
-                        },
-                        "snippet": "\u001b[90m   at \u001b[39mutils/test-helpers.ts:58\n\n\u001b[0m \u001b[90m 56 |\u001b[39m   \u001b[36masync\u001b[39m isElementReady(selector\u001b[33m:\u001b[39m string) {\n \u001b[90m 57 |\u001b[39m     \u001b[36mconst\u001b[39m element \u001b[33m=\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mlocator(selector)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 58 |\u001b[39m     \u001b[36mawait\u001b[39m expect(element)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 59 |\u001b[39m     \u001b[36mawait\u001b[39m expect(element)\u001b[33m.\u001b[39mtoBeEnabled()\u001b[33m;\u001b[39m\n \u001b[90m 60 |\u001b[39m     \u001b[36mreturn\u001b[39m element\u001b[33m;\u001b[39m\n \u001b[90m 61 |\u001b[39m   }\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/utils/test-helpers.ts",
-                            "column": 27,
-                            "line": 58
-                          },
-                          "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('input[placeholder*=\"Plumbing Repair\"]')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('input[placeholder*=\"Plumbing Repair\"]')\u001b[22m\n\n\n\u001b[90m   at \u001b[39mutils/test-helpers.ts:58\n\n\u001b[0m \u001b[90m 56 |\u001b[39m   \u001b[36masync\u001b[39m isElementReady(selector\u001b[33m:\u001b[39m string) {\n \u001b[90m 57 |\u001b[39m     \u001b[36mconst\u001b[39m element \u001b[33m=\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mlocator(selector)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 58 |\u001b[39m     \u001b[36mawait\u001b[39m expect(element)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 59 |\u001b[39m     \u001b[36mawait\u001b[39m expect(element)\u001b[33m.\u001b[39mtoBeEnabled()\u001b[33m;\u001b[39m\n \u001b[90m 60 |\u001b[39m     \u001b[36mreturn\u001b[39m element\u001b[33m;\u001b[39m\n \u001b[90m 61 |\u001b[39m   }\u001b[0m\n\u001b[2m    at TestHelpers.isElementReady (/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/utils/test-helpers.ts:58:27)\u001b[22m\n\u001b[2m    at TestHelpers.fillFormField (/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/utils/test-helpers.ts:67:30)\u001b[22m\n\u001b[2m    at /Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/e2e/pricing.spec.ts:75:19\u001b[22m"
-                        }
-                      ],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-06-26T16:53:17.287Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/test-results/e2e-pricing-Pricing-System-price-range-input-works-correctly-firefox/test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/test-results/e2e-pricing-Pricing-System-price-range-input-works-correctly-firefox/video.webm"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/test-results/e2e-pricing-Pricing-System-price-range-input-works-correctly-firefox/error-context.md"
-                        },
-                        {
-                          "name": "trace",
-                          "contentType": "application/zip",
-                          "path": "/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/test-results/e2e-pricing-Pricing-System-price-range-input-works-correctly-firefox/trace.zip"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/utils/test-helpers.ts",
-                        "column": 27,
-                        "line": 58
-                      }
-                    }
-                  ],
-                  "status": "unexpected"
-                }
-              ],
-              "id": "20c727f054eaae62e81d-22b892daf1cbba0b76e7",
-              "file": "e2e/pricing.spec.ts",
-              "line": 65,
-              "column": 7
-            },
-            {
-              "title": "free option works correctly",
-              "ok": false,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "firefox",
-                  "projectName": "firefox",
-                  "results": [
-                    {
-                      "workerIndex": 12,
-                      "parallelIndex": 3,
-                      "status": "failed",
-                      "duration": 8097,
-                      "error": {
-                        "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('input[placeholder*=\"Plumbing Repair\"]')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('input[placeholder*=\"Plumbing Repair\"]')\u001b[22m\n",
-                        "stack": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('input[placeholder*=\"Plumbing Repair\"]')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('input[placeholder*=\"Plumbing Repair\"]')\u001b[22m\n\n    at TestHelpers.isElementReady (/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/utils/test-helpers.ts:58:27)\n    at TestHelpers.fillFormField (/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/utils/test-helpers.ts:67:30)\n    at /Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/e2e/pricing.spec.ts:100:19",
-                        "location": {
-                          "file": "/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/utils/test-helpers.ts",
-                          "column": 27,
-                          "line": 58
-                        },
-                        "snippet": "\u001b[90m   at \u001b[39mutils/test-helpers.ts:58\n\n\u001b[0m \u001b[90m 56 |\u001b[39m   \u001b[36masync\u001b[39m isElementReady(selector\u001b[33m:\u001b[39m string) {\n \u001b[90m 57 |\u001b[39m     \u001b[36mconst\u001b[39m element \u001b[33m=\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mlocator(selector)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 58 |\u001b[39m     \u001b[36mawait\u001b[39m expect(element)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 59 |\u001b[39m     \u001b[36mawait\u001b[39m expect(element)\u001b[33m.\u001b[39mtoBeEnabled()\u001b[33m;\u001b[39m\n \u001b[90m 60 |\u001b[39m     \u001b[36mreturn\u001b[39m element\u001b[33m;\u001b[39m\n \u001b[90m 61 |\u001b[39m   }\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/utils/test-helpers.ts",
-                            "column": 27,
-                            "line": 58
-                          },
-                          "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('input[placeholder*=\"Plumbing Repair\"]')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('input[placeholder*=\"Plumbing Repair\"]')\u001b[22m\n\n\n\u001b[90m   at \u001b[39mutils/test-helpers.ts:58\n\n\u001b[0m \u001b[90m 56 |\u001b[39m   \u001b[36masync\u001b[39m isElementReady(selector\u001b[33m:\u001b[39m string) {\n \u001b[90m 57 |\u001b[39m     \u001b[36mconst\u001b[39m element \u001b[33m=\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mlocator(selector)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 58 |\u001b[39m     \u001b[36mawait\u001b[39m expect(element)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 59 |\u001b[39m     \u001b[36mawait\u001b[39m expect(element)\u001b[33m.\u001b[39mtoBeEnabled()\u001b[33m;\u001b[39m\n \u001b[90m 60 |\u001b[39m     \u001b[36mreturn\u001b[39m element\u001b[33m;\u001b[39m\n \u001b[90m 61 |\u001b[39m   }\u001b[0m\n\u001b[2m    at TestHelpers.isElementReady (/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/utils/test-helpers.ts:58:27)\u001b[22m\n\u001b[2m    at TestHelpers.fillFormField (/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/utils/test-helpers.ts:67:30)\u001b[22m\n\u001b[2m    at /Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/e2e/pricing.spec.ts:100:19\u001b[22m"
-                        }
-                      ],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-06-26T16:53:17.297Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/test-results/e2e-pricing-Pricing-System-free-option-works-correctly-firefox/test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/test-results/e2e-pricing-Pricing-System-free-option-works-correctly-firefox/video.webm"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/test-results/e2e-pricing-Pricing-System-free-option-works-correctly-firefox/error-context.md"
-                        },
-                        {
-                          "name": "trace",
-                          "contentType": "application/zip",
-                          "path": "/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/test-results/e2e-pricing-Pricing-System-free-option-works-correctly-firefox/trace.zip"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/utils/test-helpers.ts",
-                        "column": 27,
-                        "line": 58
-                      }
-                    }
-                  ],
-                  "status": "unexpected"
-                }
-              ],
-              "id": "20c727f054eaae62e81d-670fa7612abf3190c3ce",
-              "file": "e2e/pricing.spec.ts",
-              "line": 90,
-              "column": 7
-            },
-            {
-              "title": "unit selection works correctly",
-              "ok": false,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "firefox",
-                  "projectName": "firefox",
-                  "results": [
-                    {
-                      "workerIndex": 13,
-                      "parallelIndex": 4,
-                      "status": "failed",
-                      "duration": 7897,
-                      "error": {
-                        "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('input[placeholder*=\"Plumbing Repair\"]')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('input[placeholder*=\"Plumbing Repair\"]')\u001b[22m\n",
-                        "stack": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('input[placeholder*=\"Plumbing Repair\"]')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('input[placeholder*=\"Plumbing Repair\"]')\u001b[22m\n\n    at TestHelpers.isElementReady (/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/utils/test-helpers.ts:58:27)\n    at TestHelpers.fillFormField (/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/utils/test-helpers.ts:67:30)\n    at /Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/e2e/pricing.spec.ts:124:19",
-                        "location": {
-                          "file": "/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/utils/test-helpers.ts",
-                          "column": 27,
-                          "line": 58
-                        },
-                        "snippet": "\u001b[90m   at \u001b[39mutils/test-helpers.ts:58\n\n\u001b[0m \u001b[90m 56 |\u001b[39m   \u001b[36masync\u001b[39m isElementReady(selector\u001b[33m:\u001b[39m string) {\n \u001b[90m 57 |\u001b[39m     \u001b[36mconst\u001b[39m element \u001b[33m=\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mlocator(selector)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 58 |\u001b[39m     \u001b[36mawait\u001b[39m expect(element)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 59 |\u001b[39m     \u001b[36mawait\u001b[39m expect(element)\u001b[33m.\u001b[39mtoBeEnabled()\u001b[33m;\u001b[39m\n \u001b[90m 60 |\u001b[39m     \u001b[36mreturn\u001b[39m element\u001b[33m;\u001b[39m\n \u001b[90m 61 |\u001b[39m   }\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/utils/test-helpers.ts",
-                            "column": 27,
-                            "line": 58
-                          },
-                          "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('input[placeholder*=\"Plumbing Repair\"]')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('input[placeholder*=\"Plumbing Repair\"]')\u001b[22m\n\n\n\u001b[90m   at \u001b[39mutils/test-helpers.ts:58\n\n\u001b[0m \u001b[90m 56 |\u001b[39m   \u001b[36masync\u001b[39m isElementReady(selector\u001b[33m:\u001b[39m string) {\n \u001b[90m 57 |\u001b[39m     \u001b[36mconst\u001b[39m element \u001b[33m=\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mlocator(selector)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 58 |\u001b[39m     \u001b[36mawait\u001b[39m expect(element)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 59 |\u001b[39m     \u001b[36mawait\u001b[39m expect(element)\u001b[33m.\u001b[39mtoBeEnabled()\u001b[33m;\u001b[39m\n \u001b[90m 60 |\u001b[39m     \u001b[36mreturn\u001b[39m element\u001b[33m;\u001b[39m\n \u001b[90m 61 |\u001b[39m   }\u001b[0m\n\u001b[2m    at TestHelpers.isElementReady (/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/utils/test-helpers.ts:58:27)\u001b[22m\n\u001b[2m    at TestHelpers.fillFormField (/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/utils/test-helpers.ts:67:30)\u001b[22m\n\u001b[2m    at /Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/e2e/pricing.spec.ts:124:19\u001b[22m"
-                        }
-                      ],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-06-26T16:53:17.286Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/test-results/e2e-pricing-Pricing-System-unit-selection-works-correctly-firefox/test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/test-results/e2e-pricing-Pricing-System-unit-selection-works-correctly-firefox/video.webm"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/test-results/e2e-pricing-Pricing-System-unit-selection-works-correctly-firefox/error-context.md"
-                        },
-                        {
-                          "name": "trace",
-                          "contentType": "application/zip",
-                          "path": "/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/test-results/e2e-pricing-Pricing-System-unit-selection-works-correctly-firefox/trace.zip"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/utils/test-helpers.ts",
-                        "column": 27,
-                        "line": 58
-                      }
-                    }
-                  ],
-                  "status": "unexpected"
-                }
-              ],
-              "id": "20c727f054eaae62e81d-c1fdfbf880ea6c8ec336",
-              "file": "e2e/pricing.spec.ts",
-              "line": 114,
-              "column": 7
-            },
-            {
-              "title": "price validation works",
-              "ok": false,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "firefox",
-                  "projectName": "firefox",
-                  "results": [
-                    {
-                      "workerIndex": 14,
-                      "parallelIndex": 5,
-                      "status": "failed",
-                      "duration": 7730,
-                      "error": {
-                        "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('input[placeholder*=\"Homemade Lasagna\"]')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('input[placeholder*=\"Homemade Lasagna\"]')\u001b[22m\n",
-                        "stack": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('input[placeholder*=\"Homemade Lasagna\"]')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('input[placeholder*=\"Homemade Lasagna\"]')\u001b[22m\n\n    at TestHelpers.isElementReady (/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/utils/test-helpers.ts:58:27)\n    at TestHelpers.fillFormField (/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/utils/test-helpers.ts:67:30)\n    at /Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/e2e/pricing.spec.ts:149:19",
-                        "location": {
-                          "file": "/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/utils/test-helpers.ts",
-                          "column": 27,
-                          "line": 58
-                        },
-                        "snippet": "\u001b[90m   at \u001b[39mutils/test-helpers.ts:58\n\n\u001b[0m \u001b[90m 56 |\u001b[39m   \u001b[36masync\u001b[39m isElementReady(selector\u001b[33m:\u001b[39m string) {\n \u001b[90m 57 |\u001b[39m     \u001b[36mconst\u001b[39m element \u001b[33m=\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mlocator(selector)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 58 |\u001b[39m     \u001b[36mawait\u001b[39m expect(element)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 59 |\u001b[39m     \u001b[36mawait\u001b[39m expect(element)\u001b[33m.\u001b[39mtoBeEnabled()\u001b[33m;\u001b[39m\n \u001b[90m 60 |\u001b[39m     \u001b[36mreturn\u001b[39m element\u001b[33m;\u001b[39m\n \u001b[90m 61 |\u001b[39m   }\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/utils/test-helpers.ts",
-                            "column": 27,
-                            "line": 58
-                          },
-                          "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('input[placeholder*=\"Homemade Lasagna\"]')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('input[placeholder*=\"Homemade Lasagna\"]')\u001b[22m\n\n\n\u001b[90m   at \u001b[39mutils/test-helpers.ts:58\n\n\u001b[0m \u001b[90m 56 |\u001b[39m   \u001b[36masync\u001b[39m isElementReady(selector\u001b[33m:\u001b[39m string) {\n \u001b[90m 57 |\u001b[39m     \u001b[36mconst\u001b[39m element \u001b[33m=\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mlocator(selector)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 58 |\u001b[39m     \u001b[36mawait\u001b[39m expect(element)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 59 |\u001b[39m     \u001b[36mawait\u001b[39m expect(element)\u001b[33m.\u001b[39mtoBeEnabled()\u001b[33m;\u001b[39m\n \u001b[90m 60 |\u001b[39m     \u001b[36mreturn\u001b[39m element\u001b[33m;\u001b[39m\n \u001b[90m 61 |\u001b[39m   }\u001b[0m\n\u001b[2m    at TestHelpers.isElementReady (/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/utils/test-helpers.ts:58:27)\u001b[22m\n\u001b[2m    at TestHelpers.fillFormField (/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/utils/test-helpers.ts:67:30)\u001b[22m\n\u001b[2m    at /Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/e2e/pricing.spec.ts:149:19\u001b[22m"
-                        }
-                      ],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-06-26T16:53:17.279Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/test-results/e2e-pricing-Pricing-System-price-validation-works-firefox/test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/test-results/e2e-pricing-Pricing-System-price-validation-works-firefox/video.webm"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/test-results/e2e-pricing-Pricing-System-price-validation-works-firefox/error-context.md"
-                        },
-                        {
-                          "name": "trace",
-                          "contentType": "application/zip",
-                          "path": "/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/test-results/e2e-pricing-Pricing-System-price-validation-works-firefox/trace.zip"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/utils/test-helpers.ts",
-                        "column": 27,
-                        "line": 58
-                      }
-                    }
-                  ],
-                  "status": "unexpected"
-                }
-              ],
-              "id": "20c727f054eaae62e81d-1cfba9276e326bfbd14b",
-              "file": "e2e/pricing.spec.ts",
-              "line": 139,
-              "column": 7
-            },
-            {
-              "title": "pricing display in post cards",
+              "title": "homepage navigation works",
               "ok": true,
               "tags": [],
               "tests": [
@@ -628,314 +154,30 @@
                   "timeout": 30000,
                   "annotations": [],
                   "expectedStatus": "passed",
-                  "projectId": "firefox",
-                  "projectName": "firefox",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 15,
-                      "parallelIndex": 5,
-                      "status": "passed",
-                      "duration": 2209,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-06-26T16:53:26.602Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "trace",
-                          "contentType": "application/zip",
-                          "path": "/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/test-results/e2e-pricing-Pricing-System-pricing-display-in-post-cards-firefox/trace.zip"
-                        }
-                      ]
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "20c727f054eaae62e81d-f4fd389cf378b14ed3dd",
-              "file": "e2e/pricing.spec.ts",
-              "line": 163,
-              "column": 7
-            },
-            {
-              "title": "pricing works on mobile devices",
-              "ok": false,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "firefox",
-                  "projectName": "firefox",
-                  "results": [
-                    {
-                      "workerIndex": 16,
-                      "parallelIndex": 1,
-                      "status": "failed",
-                      "duration": 7554,
-                      "error": {
-                        "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('input[placeholder*=\"Homemade Lasagna\"]')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('input[placeholder*=\"Homemade Lasagna\"]')\u001b[22m\n",
-                        "stack": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('input[placeholder*=\"Homemade Lasagna\"]')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('input[placeholder*=\"Homemade Lasagna\"]')\u001b[22m\n\n    at TestHelpers.isElementReady (/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/utils/test-helpers.ts:58:27)\n    at TestHelpers.fillFormField (/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/utils/test-helpers.ts:67:30)\n    at /Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/e2e/pricing.spec.ts:213:19",
-                        "location": {
-                          "file": "/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/utils/test-helpers.ts",
-                          "column": 27,
-                          "line": 58
-                        },
-                        "snippet": "\u001b[90m   at \u001b[39mutils/test-helpers.ts:58\n\n\u001b[0m \u001b[90m 56 |\u001b[39m   \u001b[36masync\u001b[39m isElementReady(selector\u001b[33m:\u001b[39m string) {\n \u001b[90m 57 |\u001b[39m     \u001b[36mconst\u001b[39m element \u001b[33m=\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mlocator(selector)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 58 |\u001b[39m     \u001b[36mawait\u001b[39m expect(element)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 59 |\u001b[39m     \u001b[36mawait\u001b[39m expect(element)\u001b[33m.\u001b[39mtoBeEnabled()\u001b[33m;\u001b[39m\n \u001b[90m 60 |\u001b[39m     \u001b[36mreturn\u001b[39m element\u001b[33m;\u001b[39m\n \u001b[90m 61 |\u001b[39m   }\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/utils/test-helpers.ts",
-                            "column": 27,
-                            "line": 58
-                          },
-                          "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('input[placeholder*=\"Homemade Lasagna\"]')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('input[placeholder*=\"Homemade Lasagna\"]')\u001b[22m\n\n\n\u001b[90m   at \u001b[39mutils/test-helpers.ts:58\n\n\u001b[0m \u001b[90m 56 |\u001b[39m   \u001b[36masync\u001b[39m isElementReady(selector\u001b[33m:\u001b[39m string) {\n \u001b[90m 57 |\u001b[39m     \u001b[36mconst\u001b[39m element \u001b[33m=\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mlocator(selector)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 58 |\u001b[39m     \u001b[36mawait\u001b[39m expect(element)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 59 |\u001b[39m     \u001b[36mawait\u001b[39m expect(element)\u001b[33m.\u001b[39mtoBeEnabled()\u001b[33m;\u001b[39m\n \u001b[90m 60 |\u001b[39m     \u001b[36mreturn\u001b[39m element\u001b[33m;\u001b[39m\n \u001b[90m 61 |\u001b[39m   }\u001b[0m\n\u001b[2m    at TestHelpers.isElementReady (/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/utils/test-helpers.ts:58:27)\u001b[22m\n\u001b[2m    at TestHelpers.fillFormField (/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/utils/test-helpers.ts:67:30)\u001b[22m\n\u001b[2m    at /Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/e2e/pricing.spec.ts:213:19\u001b[22m"
-                        }
-                      ],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-06-26T16:53:26.862Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/test-results/e2e-pricing-Pricing-System-pricing-works-on-mobile-devices-firefox/test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/test-results/e2e-pricing-Pricing-System-pricing-works-on-mobile-devices-firefox/video.webm"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/test-results/e2e-pricing-Pricing-System-pricing-works-on-mobile-devices-firefox/error-context.md"
-                        },
-                        {
-                          "name": "trace",
-                          "contentType": "application/zip",
-                          "path": "/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/test-results/e2e-pricing-Pricing-System-pricing-works-on-mobile-devices-firefox/trace.zip"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/utils/test-helpers.ts",
-                        "column": 27,
-                        "line": 58
-                      }
-                    }
-                  ],
-                  "status": "unexpected"
-                }
-              ],
-              "id": "20c727f054eaae62e81d-c13654756e76e1b47c68",
-              "file": "e2e/pricing.spec.ts",
-              "line": 202,
-              "column": 7
-            },
-            {
-              "title": "currency-agnostic display",
-              "ok": false,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "firefox",
-                  "projectName": "firefox",
-                  "results": [
-                    {
-                      "workerIndex": 17,
-                      "parallelIndex": 4,
-                      "status": "failed",
-                      "duration": 7338,
-                      "error": {
-                        "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('input[placeholder*=\"Homemade Lasagna\"]')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('input[placeholder*=\"Homemade Lasagna\"]')\u001b[22m\n",
-                        "stack": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('input[placeholder*=\"Homemade Lasagna\"]')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('input[placeholder*=\"Homemade Lasagna\"]')\u001b[22m\n\n    at TestHelpers.isElementReady (/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/utils/test-helpers.ts:58:27)\n    at TestHelpers.fillFormField (/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/utils/test-helpers.ts:67:30)\n    at /Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/e2e/pricing.spec.ts:234:19",
-                        "location": {
-                          "file": "/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/utils/test-helpers.ts",
-                          "column": 27,
-                          "line": 58
-                        },
-                        "snippet": "\u001b[90m   at \u001b[39mutils/test-helpers.ts:58\n\n\u001b[0m \u001b[90m 56 |\u001b[39m   \u001b[36masync\u001b[39m isElementReady(selector\u001b[33m:\u001b[39m string) {\n \u001b[90m 57 |\u001b[39m     \u001b[36mconst\u001b[39m element \u001b[33m=\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mlocator(selector)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 58 |\u001b[39m     \u001b[36mawait\u001b[39m expect(element)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 59 |\u001b[39m     \u001b[36mawait\u001b[39m expect(element)\u001b[33m.\u001b[39mtoBeEnabled()\u001b[33m;\u001b[39m\n \u001b[90m 60 |\u001b[39m     \u001b[36mreturn\u001b[39m element\u001b[33m;\u001b[39m\n \u001b[90m 61 |\u001b[39m   }\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/utils/test-helpers.ts",
-                            "column": 27,
-                            "line": 58
-                          },
-                          "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('input[placeholder*=\"Homemade Lasagna\"]')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('input[placeholder*=\"Homemade Lasagna\"]')\u001b[22m\n\n\n\u001b[90m   at \u001b[39mutils/test-helpers.ts:58\n\n\u001b[0m \u001b[90m 56 |\u001b[39m   \u001b[36masync\u001b[39m isElementReady(selector\u001b[33m:\u001b[39m string) {\n \u001b[90m 57 |\u001b[39m     \u001b[36mconst\u001b[39m element \u001b[33m=\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mlocator(selector)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 58 |\u001b[39m     \u001b[36mawait\u001b[39m expect(element)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 59 |\u001b[39m     \u001b[36mawait\u001b[39m expect(element)\u001b[33m.\u001b[39mtoBeEnabled()\u001b[33m;\u001b[39m\n \u001b[90m 60 |\u001b[39m     \u001b[36mreturn\u001b[39m element\u001b[33m;\u001b[39m\n \u001b[90m 61 |\u001b[39m   }\u001b[0m\n\u001b[2m    at TestHelpers.isElementReady (/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/utils/test-helpers.ts:58:27)\u001b[22m\n\u001b[2m    at TestHelpers.fillFormField (/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/utils/test-helpers.ts:67:30)\u001b[22m\n\u001b[2m    at /Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/e2e/pricing.spec.ts:234:19\u001b[22m"
-                        }
-                      ],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-06-26T16:53:27.623Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/test-results/e2e-pricing-Pricing-System-currency-agnostic-display-firefox/test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/test-results/e2e-pricing-Pricing-System-currency-agnostic-display-firefox/video.webm"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/test-results/e2e-pricing-Pricing-System-currency-agnostic-display-firefox/error-context.md"
-                        },
-                        {
-                          "name": "trace",
-                          "contentType": "application/zip",
-                          "path": "/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/test-results/e2e-pricing-Pricing-System-currency-agnostic-display-firefox/trace.zip"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/tests/utils/test-helpers.ts",
-                        "column": 27,
-                        "line": 58
-                      }
-                    }
-                  ],
-                  "status": "unexpected"
-                }
-              ],
-              "id": "20c727f054eaae62e81d-671d20b7b85cf7cc437a",
-              "file": "e2e/pricing.spec.ts",
-              "line": 224,
-              "column": 7
-            },
-            {
-              "title": "pricing format test case 1: fixed",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "firefox",
-                  "projectName": "firefox",
-                  "results": [
-                    {
-                      "workerIndex": 18,
+                      "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 2279,
+                      "duration": 972,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-06-26T16:53:28.614Z",
+                      "startTime": "2025-06-27T11:24:13.442Z",
                       "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "trace",
-                          "contentType": "application/zip",
-                          "path": "/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/test-results/e2e-pricing-Pricing-System-pricing-format-test-case-1-fixed-firefox/trace.zip"
-                        }
-                      ]
+                      "attachments": []
                     }
                   ],
                   "status": "expected"
                 }
               ],
-              "id": "20c727f054eaae62e81d-7dd7c769edf3a0748236",
-              "file": "e2e/pricing.spec.ts",
-              "line": 251,
-              "column": 9
-            },
-            {
-              "title": "pricing format test case 2: range",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "firefox",
-                  "projectName": "firefox",
-                  "results": [
-                    {
-                      "workerIndex": 19,
-                      "parallelIndex": 3,
-                      "status": "passed",
-                      "duration": 2123,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-06-26T16:53:28.853Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "trace",
-                          "contentType": "application/zip",
-                          "path": "/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/test-results/e2e-pricing-Pricing-System-pricing-format-test-case-2-range-firefox/trace.zip"
-                        }
-                      ]
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "20c727f054eaae62e81d-326874694392a5677131",
-              "file": "e2e/pricing.spec.ts",
-              "line": 251,
-              "column": 9
-            },
-            {
-              "title": "pricing format test case 3: free",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "firefox",
-                  "projectName": "firefox",
-                  "results": [
-                    {
-                      "workerIndex": 20,
-                      "parallelIndex": 2,
-                      "status": "passed",
-                      "duration": 2108,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-06-26T16:53:28.962Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "trace",
-                          "contentType": "application/zip",
-                          "path": "/Users/markabrasaldo/Documents/2025/claude.code/accounting.project/community-bulletin-board/test-results/e2e-pricing-Pricing-System-pricing-format-test-case-3-free-firefox/trace.zip"
-                        }
-                      ]
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "20c727f054eaae62e81d-3d3e1e9179252acaaf09",
-              "file": "e2e/pricing.spec.ts",
-              "line": 251,
-              "column": 9
+              "id": "3e99b8f6c3cad4665a83-ffa1cff3cfab3348c39f",
+              "file": "e2e/navigation.spec.ts",
+              "line": 15,
+              "column": 7
             }
           ]
         }
@@ -944,11 +186,11 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2025-06-26T16:53:15.918Z",
-    "duration": 20076.155999999988,
-    "expected": 4,
+    "startTime": "2025-06-27T11:24:08.180Z",
+    "duration": 6581.738,
+    "expected": 1,
     "skipped": 0,
-    "unexpected": 8,
+    "unexpected": 0,
     "flaky": 0
   }
 }
