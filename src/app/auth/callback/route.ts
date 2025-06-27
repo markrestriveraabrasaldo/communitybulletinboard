@@ -8,14 +8,6 @@ export async function GET(request: NextRequest) {
   const error_description = searchParams.get('error_description')
   const next = searchParams.get('next') ?? '/'
 
-  // Log all parameters for debugging
-  console.log('Auth callback params:', {
-    code: code ? 'present' : 'missing',
-    error,
-    error_description,
-    all_params: Object.fromEntries(searchParams.entries())
-  })
-
   // If there's an error from Facebook, log it and redirect
   if (error) {
     console.error('OAuth error from Facebook:', { error, error_description })
@@ -48,20 +40,10 @@ export async function GET(request: NextRequest) {
 
     const { data, error: supabaseError } = await supabase.auth.exchangeCodeForSession(code)
     
-    console.log('Supabase auth exchange result:', { 
-      success: !supabaseError, 
-      error: supabaseError?.message,
-      user: data?.user?.email,
-      userMetadata: data?.user?.user_metadata,
-      provider: data?.user?.app_metadata?.provider
-    })
-    
     if (supabaseError) {
       console.error('Supabase auth error:', supabaseError)
       return NextResponse.redirect(`${origin}/auth/auth-code-error?supabase_error=${supabaseError.message}`)
     }
-
-    console.log('Authentication successful, redirecting to:', next)
     
     // Create response and set all collected cookies
     const response = NextResponse.redirect(`${origin}${next}`)
