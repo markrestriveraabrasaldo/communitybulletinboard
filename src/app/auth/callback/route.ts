@@ -1,4 +1,4 @@
-import { createClient } from '@/lib/supabase-server'
+import { createServerClient } from '@supabase/ssr'
 import { NextRequest, NextResponse } from 'next/server'
 
 export async function GET(request: NextRequest) {
@@ -23,7 +23,27 @@ export async function GET(request: NextRequest) {
   }
 
   if (code) {
-    const supabase = await createClient()
+    // Create response object to handle cookies
+    let response = NextResponse.redirect(`${origin}${next}`)
+    
+    // Create Supabase client with proper cookie handling for Route Handlers
+    const supabase = createServerClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+      {
+        cookies: {
+          getAll() {
+            return request.cookies.getAll()
+          },
+          setAll(cookiesToSet) {
+            cookiesToSet.forEach(({ name, value, options }) => {
+              response.cookies.set(name, value, options)
+            })
+          },
+        },
+      }
+    )
+
     const { data, error: supabaseError } = await supabase.auth.exchangeCodeForSession(code)
     
     console.log('Supabase auth exchange result:', { 
@@ -34,13 +54,13 @@ export async function GET(request: NextRequest) {
       provider: data?.user?.app_metadata?.provider
     })
     
-    if (!supabaseError) {
-      console.log('Authentication successful, redirecting to:', next)
-      return NextResponse.redirect(`${origin}${next}`)
-    } else {
+    if (supabaseError) {
       console.error('Supabase auth error:', supabaseError)
       return NextResponse.redirect(`${origin}/auth/auth-code-error?supabase_error=${supabaseError.message}`)
     }
+
+    console.log('Authentication successful, redirecting to:', next)
+    return response
   }
 
   // No code parameter
