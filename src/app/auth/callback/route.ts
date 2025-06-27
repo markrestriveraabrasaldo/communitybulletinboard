@@ -26,10 +26,14 @@ export async function GET(request: NextRequest) {
     // Store cookies to be set on response
     const cookiesToSet: Array<{ name: string; value: string; options?: any }> = []
     
+    // Clean environment variables to prevent header issues
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!.trim()
+    const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!.trim().replace(/\s+/g, '')
+    
     // Create Supabase client with proper cookie handling for Route Handlers
     const supabase = createServerClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+      supabaseUrl,
+      supabaseKey,
       {
         cookies: {
           getAll() {

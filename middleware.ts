@@ -6,9 +6,13 @@ export async function middleware(request: NextRequest) {
     request,
   })
 
+  // Clean environment variables to prevent header issues
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!.trim()
+  const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!.trim().replace(/\s+/g, '')
+
   const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    supabaseUrl,
+    supabaseKey,
     {
       cookies: {
         getAll() {

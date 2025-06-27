@@ -9,8 +9,12 @@ export function createClient() {
     throw new Error('Missing Supabase environment variables')
   }
 
+  // Clean environment variables to prevent header issues
+  const cleanUrl = supabaseUrl.trim()
+  const cleanKey = supabaseAnonKey.trim().replace(/\s+/g, '')
+
   return createBrowserClient<Database>(
-    supabaseUrl,
-    supabaseAnonKey
+    cleanUrl,
+    cleanKey
   )
 }
