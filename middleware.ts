@@ -53,10 +53,9 @@ export async function middleware(request: NextRequest) {
     }
   }
 
-  // If user is authenticated and trying to access auth callback
-  if (user && request.nextUrl.pathname === '/auth/callback') {
-    // Redirect to home after successful authentication
-    return NextResponse.redirect(new URL('/', request.url))
+  // Don't interfere with auth callback processing
+  if (request.nextUrl.pathname.startsWith('/auth/')) {
+    return supabaseResponse
   }
 
   return supabaseResponse
