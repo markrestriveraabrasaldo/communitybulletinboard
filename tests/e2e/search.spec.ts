@@ -20,9 +20,11 @@ test.describe('Search Functionality', () => {
     await page.goto('/');
     await helpers.waitForPageLoad();
     
-    // Should see search section
-    await expect(page.locator('text=Search Community Posts')).toBeVisible();
-    await expect(page.locator('input[placeholder*="Search across all posts"]')).toBeVisible();
+    // Should see search section - look for the input field which is more reliable
+    await expect(page.locator('input[placeholder*="Search across all posts and categories"]')).toBeVisible();
+    
+    // Check for search section heading (with or without emoji)
+    await expect(page.locator('h2:has-text("Search Community Posts")')).toBeVisible();
   });
 
   test('search input works correctly', async ({ page }) => {

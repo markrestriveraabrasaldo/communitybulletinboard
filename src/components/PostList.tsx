@@ -3,7 +3,6 @@
 import { useState, useEffect, useCallback } from 'react'
 import { PostWithCategory, Category } from '@/types/database'
 import PostCard from './PostCard'
-import SearchBar from './SearchBar'
 import { doesPostMatchSearch } from '@/utils/searchUtils'
 
 interface PostListProps {
@@ -13,8 +12,8 @@ interface PostListProps {
   searchQuery?: string
   isSearching?: boolean
   showSearch?: boolean
-  categoryId?: string
-  categoryName?: string
+  categoryId?: string // @deprecated - PostList is deprecated, use SearchWithServerActions directly
+  categoryName?: string // @deprecated - PostList is deprecated, use SearchWithServerActions directly
 }
 
 export default function PostList({ 
@@ -24,8 +23,8 @@ export default function PostList({
   searchQuery = '', 
   isSearching = false,
   showSearch = true,
-  categoryId,
-  categoryName
+  categoryId, // eslint-disable-line @typescript-eslint/no-unused-vars
+  categoryName // eslint-disable-line @typescript-eslint/no-unused-vars
 }: PostListProps) {
   const [posts, setPosts] = useState(initialPosts)
   const [filter, setFilter] = useState<'all' | 'active' | 'resolved' | 'sold' | 'inactive'>('all')
@@ -84,17 +83,14 @@ export default function PostList({
 
   return (
     <div>
-      {/* Search Bar - only show if there are posts to search or if already searching */}
+      {/* Search functionality - PostList is deprecated, use SearchWithServerActions directly */}
       {showSearch && (posts.length > 0 || currentSearchQuery) && (
         <div className="mb-6">
-          <SearchBar
-            onSearch={handleSearch}
-            placeholder="Search posts by title, description, or details..."
-            isLoading={isSearching}
-            className="w-full"
-            categoryId={categoryId}
-            categoryName={categoryName}
-          />
+          <div className="p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+            <p className="text-yellow-800 text-sm">
+              ⚠️ PostList component is deprecated. Use SearchWithServerActions directly instead.
+            </p>
+          </div>
         </div>
       )}
 

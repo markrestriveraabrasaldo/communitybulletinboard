@@ -38,7 +38,7 @@ export async function GET(request: NextRequest) {
       }
     )
 
-    const { data, error: supabaseError } = await supabase.auth.exchangeCodeForSession(code)
+    const { error: supabaseError } = await supabase.auth.exchangeCodeForSession(code)
     
     if (supabaseError) {
       console.error('Supabase auth error:', supabaseError)
