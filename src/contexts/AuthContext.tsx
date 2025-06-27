@@ -69,16 +69,21 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, [supabase.auth]);
 
   const signInWithFacebook = async () => {
-    console.log('Initiating Facebook OAuth');
+    console.log('🚀 Initiating Facebook OAuth...');
+    console.log('🌐 Current URL:', window.location.href);
+    console.log('🏠 Origin:', window.location.origin);
     
     const { data, error } = await supabase.auth.signInWithOAuth({
-      provider: 'facebook'
+      provider: 'facebook',
+      options: {
+        redirectTo: `${window.location.origin}/auth/callback`
+      }
     });
     if (error) {
-      console.error('Error signing in with Facebook:', error);
+      console.error('❌ Error signing in with Facebook:', error);
     } else {
-      console.log('OAuth redirect initiated:', data);
-      console.log('Redirect URL that will be used:', data.url);
+      console.log('✅ OAuth redirect initiated:', data);
+      console.log('📍 Redirect URL that will be used:', data.url);
     }
   };
 
