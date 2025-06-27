@@ -23,8 +23,8 @@ export async function GET(request: NextRequest) {
   }
 
   if (code) {
-    // Create response object to handle cookies
-    let response = NextResponse.redirect(`${origin}${next}`)
+    // Store cookies to be set on response
+    const cookiesToSet: Array<{ name: string; value: string; options?: any }> = []
     
     // Create Supabase client with proper cookie handling for Route Handlers
     const supabase = createServerClient(
@@ -35,10 +35,8 @@ export async function GET(request: NextRequest) {
           getAll() {
             return request.cookies.getAll()
           },
-          setAll(cookiesToSet) {
-            cookiesToSet.forEach(({ name, value, options }) => {
-              response.cookies.set(name, value, options)
-            })
+          setAll(cookieList) {
+            cookiesToSet.push(...cookieList)
           },
         },
       }
@@ -60,6 +58,13 @@ export async function GET(request: NextRequest) {
     }
 
     console.log('Authentication successful, redirecting to:', next)
+    
+    // Create response and set all collected cookies
+    const response = NextResponse.redirect(`${origin}${next}`)
+    cookiesToSet.forEach(({ name, value, options }) => {
+      response.cookies.set(name, value, options)
+    })
+    
     return response
   }
 
