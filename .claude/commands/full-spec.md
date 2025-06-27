@@ -1,17 +1,25 @@
-# Create Spec - Planning Document Generator
+# Full Spec - Comprehensive Planning (1+ Days)
 
-This command helps create structured planning documents for new features, refactoring, or complex changes before implementation.
+⚠️ **NOTICE**: This command is now part of a tiered planning system!
 
-## When to Create a Spec
+## Choose the Right Planning Level
 
-- **New Features**: Any feature that requires multiple components or database changes
-- **Major Refactoring**: Significant architectural changes
-- **Complex Bug Fixes**: Issues requiring multiple file changes
-- **Integration Work**: Adding new external services or APIs
+**For most tasks, use these optimized commands:**
+- `/micro-plan` - Quick tasks (1-2 hours) 
+- `/quick-spec` - Medium tasks (2-8 hours)
+- `/which-spec` - Decision helper
 
-## Spec Templates Available
+**Use `/full-spec` (this command) only for:**
+- **Major Features**: Complex functionality requiring extensive planning
+- **Architecture Changes**: Core system modifications
+- **High-Risk Projects**: Significant user or business impact
+- **Multi-day Projects**: Work requiring comprehensive documentation
 
-### 1. Feature Specification (`YYYY-MM-DD-feature-name.md`)
+---
+
+## Full Spec Templates (For Major Work Only)
+
+### 1. Major Feature Specification (`YYYY-MM-DD-full-feature-name.md`)
 
 **Use for**: New functionality that adds value to users
 
@@ -75,7 +83,7 @@ This command helps create structured planning documents for new features, refact
 - Key performance indicators
 ```
 
-### 2. Refactoring Specification (`YYYY-MM-DD-refactor-name.md`)
+### 2. Major Refactoring Specification (`YYYY-MM-DD-full-refactor-name.md`)
 
 **Use for**: Architectural improvements or code modernization
 
@@ -122,7 +130,7 @@ This command helps create structured planning documents for new features, refact
 - User acceptance criteria
 ```
 
-### 3. Bug Fix Specification (`YYYY-MM-DD-bugfix-name.md`)
+### 3. Complex Bug Fix Specification (`YYYY-MM-DD-full-bugfix-name.md`)
 
 **Use for**: Complex bugs affecting multiple systems
 
@@ -162,12 +170,14 @@ This command helps create structured planning documents for new features, refact
 - Process improvements
 ```
 
-## Naming Convention
+## Naming Convention for Full Specs
 
-Use this format for spec file names:
-- `YYYY-MM-DD-feature-comments-system.md`
-- `YYYY-MM-DD-refactor-auth-context.md`
-- `YYYY-MM-DD-bugfix-image-upload.md`
+Use this format for comprehensive spec file names:
+- `YYYY-MM-DD-full-feature-comments-system.md`
+- `YYYY-MM-DD-full-refactor-auth-context.md`
+- `YYYY-MM-DD-full-bugfix-complex-authentication.md`
+
+**Note**: Simple tasks should use `/micro-plan` or `/quick-spec` instead!
 
 ## Spec Workflow
 
@@ -177,26 +187,25 @@ Use this format for spec file names:
 4. **Update Spec**: Modify if discoveries require changes
 5. **Complete**: Mark spec as implemented in roadmap
 
-## Current Project Context
+## Context Recommendations for Full Specs
 
-**Existing Architecture**: Next.js App Router, Server Actions, Supabase  
-**Recent Patterns**: Server Components, useActionState, Zod validation  
-**Code Quality**: High - clean, typed, well-structured  
-**Testing**: Playwright for E2E, could use more unit tests  
+**When creating comprehensive specs:**
+- **Always start with**: `/full-learn` for complete project context
+- **Reference**: `project_memory/07_TECH_STACK_BEST_PRACTICES.md` for technical patterns
+- **Consider**: `project_memory/08_DEVELOPMENT_WORKFLOW_GUIDE.md` for workflow optimization
 
-## Example Spec Ideas for Current Project
+## Reminder: Choose the Right Tool
 
-### Potential New Features
-- **Comments System**: User commenting on posts
-- **Notification System**: In-app notifications for activity
-- **Real-time Updates**: Live updates using Supabase Realtime
-- **User Ratings**: Rating system for service providers
-- **Private Messaging**: Direct communication between users
+**Remember**: 90% of development work can use lighter planning approaches:
 
-### Potential Refactoring
-- **Component Library**: Standardize common UI components
-- **Error Handling**: Centralized error management system
-- **Performance**: Optimize image loading and caching
-- **Testing**: Add comprehensive unit test coverage
+### Quick Decision Guide
+- **1-2 hours** → `/micro-plan` (lightweight .md spec)
+- **2-8 hours** → `/quick-spec` (focused .md planning)  
+- **1+ days** → `/full-spec` (this comprehensive approach)
+- **Unsure?** → `/which-spec` (decision helper)
 
-Creating a spec before major work ensures better planning, clearer communication, and more successful implementations.
+## Integration with Optimized Workflow
+
+Full specs are designed for the 10% of work that truly needs comprehensive planning. For daily development efficiency, use the tiered system to match planning effort to task complexity.
+
+**The goal**: Right-sized planning that helps you succeed without slowing you down!
