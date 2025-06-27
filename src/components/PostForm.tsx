@@ -44,7 +44,12 @@ function SubmitButton({ isEditing }: { isEditing: boolean }) {
 async function handleFormAction(_prevState: any, formData: FormData) {
   try {
     // Handle image uploads first if there are any files
-    const imageFiles = formData.getAll('imageFiles') as File[]
+    // Try prefixed field name first (React useActionState sometimes adds prefixes)
+    let imageFiles = formData.getAll('1_imageFiles') as File[]
+    if (imageFiles.length === 0) {
+      // Fall back to unprefixed field name
+      imageFiles = formData.getAll('imageFiles') as File[]
+    }
     const imageUrls: string[] = []
     
     if (imageFiles.length > 0) {
@@ -60,13 +65,34 @@ async function handleFormAction(_prevState: any, formData: FormData) {
       }
     }
 
-    // Set the main image URL from uploads
+    // Set the main image URL from uploads and add all images to details
     if (imageUrls.length > 0) {
       formData.set('imageUrl', imageUrls[0])
+      
+      // Get existing details and add all image URLs
+      const existingDetails = formData.get('1_details') || formData.get('details') || '{}'
+      let details
+      try {
+        details = JSON.parse(existingDetails as string)
+      } catch {
+        details = {}
+      }
+      
+      // Add all uploaded images to details
+      details.image = imageUrls
+      
+      // Update form data with new details
+      formData.set('details', JSON.stringify(details))
+      formData.set('1_details', JSON.stringify(details))
     }
 
     // Determine if this is an update or create operation
-    const postId = formData.get('postId') as string
+    // Try prefixed field name first
+    let postId = formData.get('1_postId') as string
+    if (!postId) {
+      // Fall back to unprefixed field name
+      postId = formData.get('postId') as string
+    }
     
     if (postId) {
       // Update existing post

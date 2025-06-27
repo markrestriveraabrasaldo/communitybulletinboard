@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useMemo } from 'react'
 import { 
   PriceData, 
   PriceInputProps, 
@@ -22,37 +22,30 @@ export default function PriceInput({
   showUnits = true,
   availableUnits = PRICE_UNITS.map(u => u.value)
 }: PriceInputProps) {
-  const [priceData, setPriceData] = useState<PriceData>(value)
-  const [validationErrors, setValidationErrors] = useState<string[]>([])
-
-  // Update internal state when value prop changes
-  useEffect(() => {
-    setPriceData(value)
+  // Compute validation errors from current value
+  const validationErrors = useMemo(() => {
+    const validation = validatePriceData(value)
+    return validation.errors
   }, [value])
 
-  // Validate and notify parent of changes
-  useEffect(() => {
-    const validation = validatePriceData(priceData)
-    setValidationErrors(validation.errors)
-    onChange(priceData)
-  }, [priceData, onChange])
-
   const handleTypeChange = (newType: PriceType) => {
-    setPriceData(prev => ({
-      ...prev,
+    const newPriceData: PriceData = {
+      ...value,
       type: newType,
       // Clear values when changing type
-      value: newType === 'fixed' ? prev.value : undefined,
-      min: newType === 'range' ? prev.min : undefined,
-      max: newType === 'range' ? prev.max : undefined
-    }))
+      value: newType === 'fixed' ? value.value : undefined,
+      min: newType === 'range' ? value.min : undefined,
+      max: newType === 'range' ? value.max : undefined
+    }
+    onChange(newPriceData)
   }
 
   const handleValueChange = (field: keyof PriceData, newValue: string | number | boolean | undefined) => {
-    setPriceData(prev => ({
-      ...prev,
+    const newPriceData: PriceData = {
+      ...value,
       [field]: newValue
-    }))
+    }
+    onChange(newPriceData)
   }
 
   const handleNumberInput = (field: 'value' | 'min' | 'max', inputValue: string) => {
@@ -79,7 +72,7 @@ export default function PriceInput({
                 type="radio"
                 name="price-type"
                 value={type}
-                checked={priceData.type === type}
+                checked={value.type === type}
                 onChange={(e) => handleTypeChange(e.target.value as PriceType)}
                 disabled={disabled}
                 className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
@@ -93,14 +86,14 @@ export default function PriceInput({
       </div>
 
       {/* Price Inputs */}
-      {priceData.type === 'fixed' && (
+      {value.type === 'fixed' && (
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
             Price {required && <span className="text-red-500">*</span>}
           </label>
           <input
             type="number"
-            value={priceData.value ?? ''}
+            value={value.value ?? ''}
             onChange={(e) => handleNumberInput('value', e.target.value)}
             placeholder="0.00"
             min="0"
@@ -111,7 +104,7 @@ export default function PriceInput({
         </div>
       )}
 
-      {priceData.type === 'range' && (
+      {value.type === 'range' && (
         <div className="grid grid-cols-2 gap-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -119,7 +112,7 @@ export default function PriceInput({
             </label>
             <input
               type="number"
-              value={priceData.min ?? ''}
+              value={value.min ?? ''}
               onChange={(e) => handleNumberInput('min', e.target.value)}
               placeholder="0.00"
               min="0"
@@ -134,7 +127,7 @@ export default function PriceInput({
             </label>
             <input
               type="number"
-              value={priceData.max ?? ''}
+              value={value.max ?? ''}
               onChange={(e) => handleNumberInput('max', e.target.value)}
               placeholder="0.00"
               min="0"
@@ -146,7 +139,7 @@ export default function PriceInput({
         </div>
       )}
 
-      {priceData.type === 'free' && (
+      {value.type === 'free' && (
         <div className="p-4 bg-green-50 border border-green-200 rounded-md">
           <p className="text-sm text-green-700">
             This item/service is offered for free.
@@ -157,11 +150,11 @@ export default function PriceInput({
       {/* Additional Options */}
       <div className="space-y-3">
         {/* Negotiable Toggle */}
-        {priceData.type !== 'free' && (
+        {value.type !== 'free' && (
           <label className="flex items-center">
             <input
               type="checkbox"
-              checked={priceData.negotiable}
+              checked={value.negotiable}
               onChange={(e) => handleValueChange('negotiable', e.target.checked)}
               disabled={disabled}
               className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
@@ -173,13 +166,13 @@ export default function PriceInput({
         )}
 
         {/* Unit Selection */}
-        {showUnits && priceData.type !== 'free' && (
+        {showUnits && value.type !== 'free' && (
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Unit
             </label>
             <select
-              value={priceData.unit}
+              value={value.unit}
               onChange={(e) => handleValueChange('unit', e.target.value as PriceUnit)}
               disabled={disabled}
               className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-gray-900"
@@ -195,11 +188,11 @@ export default function PriceInput({
       </div>
 
       {/* Price Preview */}
-      {priceData.type !== 'free' && (
+      {value.type !== 'free' && (
         <div className="p-3 bg-gray-50 border border-gray-200 rounded-md">
           <p className="text-sm font-medium text-gray-700 mb-1">Preview:</p>
           <p className="text-lg font-semibold text-gray-900">
-            {formatPriceDisplay(priceData, '', 'detailed')}
+            {formatPriceDisplay(value, '', 'detailed')}
           </p>
         </div>
       )}

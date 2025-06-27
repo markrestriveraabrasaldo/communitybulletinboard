@@ -30,13 +30,27 @@ export async function createPost(formData: FormData): Promise<CreatePostResult> 
       return { success: false, error: 'Authentication required' }
     }
 
+    // Helper function to get form data with prefix fallback
+    const getFormValue = (key: string): string => {
+      // Try with prefix first (React useActionState sometimes adds prefixes)
+      const prefixed = formData.get(`1_${key}`) as string
+      if (prefixed) return prefixed
+      
+      // Fall back to unprefixed
+      const unprefixed = formData.get(key) as string
+      if (unprefixed) return unprefixed
+      
+      return ''
+    }
+
     // Extract and validate form data
-    const rawData = {
-      title: formData.get('title') as string,
-      description: formData.get('description') as string,
-      categoryId: formData.get('categoryId') as string,
-      details: formData.get('details') as string,
-      imageUrl: formData.get('imageUrl') as string,
+    // eslint-disable-next-line prefer-const
+    let rawData = {
+      title: getFormValue('title'),
+      description: getFormValue('description'),
+      categoryId: getFormValue('categoryId'),
+      details: getFormValue('details'),
+      imageUrl: getFormValue('imageUrl'),
     }
 
     // Parse details JSON
@@ -47,6 +61,14 @@ export async function createPost(formData: FormData): Promise<CreatePostResult> 
       } catch {
         return { success: false, error: 'Invalid details format' }
       }
+    }
+
+    // If title/description are missing from form but present in details, extract them
+    if (!rawData.title && details && typeof details === 'object' && 'title' in details) {
+      rawData.title = details.title as string
+    }
+    if (!rawData.description && details && typeof details === 'object' && 'description' in details) {
+      rawData.description = details.description as string
     }
 
     // Validate using Zod schema
@@ -109,14 +131,28 @@ export async function updatePost(formData: FormData): Promise<UpdatePostResult> 
       return { success: false, error: 'Authentication required' }
     }
 
+    // Helper function to get form data with prefix fallback
+    const getFormValue = (key: string): string => {
+      // Try with prefix first (React useActionState sometimes adds prefixes)
+      const prefixed = formData.get(`1_${key}`) as string
+      if (prefixed) return prefixed
+      
+      // Fall back to unprefixed
+      const unprefixed = formData.get(key) as string
+      if (unprefixed) return unprefixed
+      
+      return ''
+    }
+
     // Extract form data
-    const rawData = {
-      postId: formData.get('postId') as string,
-      title: formData.get('title') as string,
-      description: formData.get('description') as string,
-      categoryId: formData.get('categoryId') as string,
-      details: formData.get('details') as string,
-      imageUrl: formData.get('imageUrl') as string,
+    // eslint-disable-next-line prefer-const
+    let rawData = {
+      postId: getFormValue('postId'),
+      title: getFormValue('title'),
+      description: getFormValue('description'),
+      categoryId: getFormValue('categoryId'),
+      details: getFormValue('details'),
+      imageUrl: getFormValue('imageUrl'),
     }
 
     // Parse details JSON
@@ -127,6 +163,14 @@ export async function updatePost(formData: FormData): Promise<UpdatePostResult> 
       } catch {
         return { success: false, error: 'Invalid details format' }
       }
+    }
+
+    // If title/description are missing from form but present in details, extract them
+    if (!rawData.title && details && typeof details === 'object' && 'title' in details) {
+      rawData.title = details.title as string
+    }
+    if (!rawData.description && details && typeof details === 'object' && 'description' in details) {
+      rawData.description = details.description as string
     }
 
     // Validate using Zod schema
@@ -237,6 +281,7 @@ export async function uploadImage(formData: FormData): Promise<UploadImageResult
     return { success: false, error: 'Server error occurred' }
   }
 }
+
 
 export async function deletePost(postId: string): Promise<{ success: boolean; error?: string }> {
   try {
