@@ -22,9 +22,20 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     const getSession = async () => {
+      console.log('🔍 AuthContext: Getting initial session...');
       const {
         data: { session },
+        error
       } = await supabase.auth.getSession();
+      
+      console.log('🔍 AuthContext: Initial session result:', {
+        hasSession: !!session,
+        hasUser: !!session?.user,
+        userEmail: session?.user?.email,
+        error: error?.message,
+        sessionId: session?.access_token?.substring(0, 20) + '...'
+      });
+      
       setSession(session);
       setUser(session?.user ?? null);
       setLoading(false);
@@ -34,11 +45,24 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange((event, session) => {
-      console.log('Auth state change:', event, session);
+    } = supabase.auth.onAuthStateChange(async (event, session) => {
+      console.log('🔄 Auth state change:', {
+        event,
+        hasSession: !!session,
+        hasUser: !!session?.user,
+        userEmail: session?.user?.email,
+        sessionId: session?.access_token?.substring(0, 20) + '...'
+      });
+      
       setSession(session);
       setUser(session?.user ?? null);
       setLoading(false);
+      
+      // If we just signed in, refresh the page to ensure proper state sync
+      if (event === 'SIGNED_IN' && session) {
+        console.log('🔄 User signed in, refreshing page to sync state...');
+        window.location.reload();
+      }
     });
 
     return () => subscription.unsubscribe();
