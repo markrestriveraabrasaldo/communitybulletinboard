@@ -32,8 +32,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         hasSession: !!session,
         hasUser: !!session?.user,
         userEmail: session?.user?.email,
-        error: error?.message,
-        sessionId: session?.access_token?.substring(0, 20) + '...'
+        error: error?.message
       });
       
       setSession(session);
@@ -50,19 +49,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         event,
         hasSession: !!session,
         hasUser: !!session?.user,
-        userEmail: session?.user?.email,
-        sessionId: session?.access_token?.substring(0, 20) + '...'
+        userEmail: session?.user?.email
       });
       
       setSession(session);
       setUser(session?.user ?? null);
       setLoading(false);
-      
-      // If we just signed in, refresh the page to ensure proper state sync
-      if (event === 'SIGNED_IN' && session) {
-        console.log('🔄 User signed in, refreshing page to sync state...');
-        window.location.reload();
-      }
     });
 
     return () => subscription.unsubscribe();
